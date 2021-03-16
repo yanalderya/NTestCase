@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'DB_NAME', '"nesine"'
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+            useProguard false
+            buildConfigField 'String', 'DB_NAME', '"nesine_debug"'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility versions.sourceCompat
+        targetCompatibility versions.targetCompat
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    api deps.kotlin.stdlib
+    api deps.ktx
+    api deps.support.appCompat
+    api deps.support.support
+    api deps.support.designSupport
+    api deps.support.multidex
+    api deps.android.constraintLayout
+    api deps.android.lifecycleExt
+
+    api deps.reactivex.rxJava
+    api deps.reactivex.rxAndroid
+    api deps.reactivex.rxKotlin
+
+    api deps.navigation.navigationFragment
+    api deps.navigation.navigationUi
+
+    api deps.square.picasso
+    api deps.square.timber
+
+    api deps.room.room
+    kapt deps.room.roomProcessor
+
+    api deps.google.dagger
+    api deps.google.daggerSupport
+    kapt deps.google.daggerProcessor
+    kapt deps.google.daggerAndroidProcessor
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.testExt
+    androidTestImplementation deps.test.espressoCore
+
+    api deps.room.roomRx
+}

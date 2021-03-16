@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NTestCase</string>
+
+    <string name="fragment_main_title">Main Fragment</string>
+    <string name="add">Ekle</string>
+
+    <string-array name="type_list">
+        <item>Type 1</item>
+        <item>Type 2</item>
+        <item>Type 3</item>
+    </string-array>
+</resources>

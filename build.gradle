@@ -1,0 +1,113 @@
+buildscript {
+
+    ext {
+        kotlin_version = '1.3.72'
+    }
+    ext.versions = [
+            'sourceCompat'    : JavaVersion.VERSION_1_8,
+            'targetCompat'    : JavaVersion.VERSION_1_8,
+            'kotlin'          : '1.3.72',
+            'minSdk'          : 18,
+            'compileSdk'      : 30,
+            'ktx'             : '1.3.2',
+            'appCompat'       : '1.2.0',
+            'supportVer'      : '1.0.0',
+            'buildTools'      : '28.0.3',
+            'androidPlugin'   : '3.6.1',
+            'lifecycle'       : '2.0.0',
+            'materialVer'     : '1.2.1',
+            'constraintLayout': '2.0.4',
+            'navigationVer'   : '2.3.4',
+            'dagger'          : '2.22.1',
+            'rxJava'          : '2.2.8',
+            'rxAndroid'       : '2.1.1',
+            'timber'          : '4.7.1',
+            'multidex'        : '2.0.0',
+            'rxKotlin'        : '2.3.0',
+            'roomVersion'     : '2.2.6',
+            'picasso'         : '2.71828',
+            'junitVer'        : '4.12',
+            'testExtVer'      : '1.1.2',
+            'espressoCoreVer' : '3.3.0'
+    ]
+
+    ext.deps = [
+            android   : [
+                    'gradlePlugin'         : "com.android.tools.build:gradle:${versions.androidPlugin}",
+                    'lifecycleExt'         : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}",
+                    'lifecycleCommon'      : "androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}",
+                    'lifecycleViewmodelKtx': "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}",
+                    'lifecycleCompiler'    : "androidx.lifecycle:lifecycle-compiler:${versions.lifecycle}",
+                    'constraintLayout'     : "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+            ],
+            support   : [
+                    'appCompat'    : "androidx.appcompat:appcompat:${versions.appCompat}",
+                    'support'      : "androidx.legacy:legacy-support-v4:${versions.supportVer}",
+                    'designSupport': "com.google.android.material:material:${versions.materialVer}",
+                    'multidex'     : "androidx.multidex:multidex:${versions.multidex}"
+            ],
+            kotlin    : [
+                    'gradlePlugin': "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
+                    'stdlib'      : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+            ],
+            reactivex : [
+                    'rxJava'   : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
+                    'rxAndroid': "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
+                    'rxKotlin' : "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}",
+                    'rxBinding': "com.jakewharton.rxbinding3:rxbinding:${versions.rxBinding}"
+            ],
+            google    : [
+                    'dagger'                : "com.google.dagger:dagger:${versions.dagger}",
+                    'daggerSupport'         : "com.google.dagger:dagger-android-support:${versions.dagger}",
+                    'daggerProcessor'       : "com.google.dagger:dagger-compiler:${versions.dagger}",
+                    'daggerAndroidProcessor': "com.google.dagger:dagger-android-processor:${versions.dagger}",
+                    'gson'                  : "com.google.code.gson:gson:${versions.gson}"
+            ],
+            square    : [
+                    'timber' : "com.jakewharton.timber:timber:${versions.timber}",
+                    'picasso': "com.squareup.picasso:picasso:${versions.picasso}"
+            ],
+            test      : [
+                    'junit'       : "junit:junit:${versions.junitVer}",
+                    'testExt'     : "androidx.test.ext:junit:${versions.testExtVer}",
+                    'espressoCore': "androidx.test.espresso:espresso-core:${versions.espressoCoreVer}"
+            ],
+            navigation: [
+                    'gradlePlugin'      : "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.navigationVer}",
+                    'navigationFragment': "androidx.navigation:navigation-fragment-ktx:${versions.navigationVer}",
+                    'navigationUi'      : "androidx.navigation:navigation-ui-ktx:${versions.navigationVer}"
+
+            ],
+            room      : [
+                    'room'         : "androidx.room:room-runtime:${versions.roomVersion}",
+                    'roomProcessor': "androidx.room:room-compiler:${versions.roomVersion}",
+                    'roomRx'       : "androidx.room:room-rxjava2:${versions.roomVersion}"
+            ],
+            "ktx"     : "androidx.core:core-ktx:${versions.ktx}"
+    ]
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:${versions.androidPlugin}"
+        classpath deps.kotlin.gradlePlugin
+        classpath deps.navigation.gradlePlugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/navigation_main">
+
+    <fragment
+        android:id="@+id/navigation_main"
+        android:name="com.example.ntestcase.ui.main.MainFragment"
+        android:label="@string/fragment_main_title"
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/action_navigation_main_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_navigation_main_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.ntestcase.ui.add.AddFragment"
+        android:label="AddFragment" />
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.ntestcase.ui.detail.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="MainCardDTO"
+            app:argType="com.example.ntestcase.viewholder.MainCardDTO" />
+    </fragment>
+</navigation>
